@@ -1,0 +1,31 @@
+#samples: samples.tsv
+units : samples.tsv
+
+fq_dir : /panfs/roc/groups/0/fried255/cull0084/projects/antigen_receptor_seq/data/raw_fq
+
+chains : ['IGM', 'IGG', 'IGA', 'IGE', 'IGK', 'IGL', 'IGH']
+
+# sample processing
+auth : /panfs/roc/groups/0/fried255/cull0084/.gspread_auth/client_secret.json
+mig_size : 1
+barcodes : src/BARCODE.txt
+assembly_meta : src/assembly_metadata.txt
+migec : /home/fried255/shared/.local/bin/migec-1.2.9.jar
+mitools : /home/fried255/shared/.local/src/mitools-1.5/mitools.jar 
+mixcr : /panfs/roc/groups/0/fried255/shared/.local/src/mixcr-3.0.12/mixcr
+imgt_release : imgt.202031-2
+
+
+# clonotype analysis
+# read filter for analyzed reads from mixcr output and percent of reads used in clones
+read_filtr : 1000
+percent_filtr : 5
+vdjtools : /panfs/roc/groups/0/fried255/shared/.local/src/vdjtools-1.2.1/vdjtools-1.2.1.jar
+filtered : [500, 1000, 2000, 5000]
+
+# changeo
+canis_rep : /panfs/roc/groups/0/fried255/cull0084/projects/antigen_receptor_seq/data/canis_repertoire
+imgt_url : http://www.imgt.org/download/V-QUEST/IMGT_V-QUEST_reference_directory/Canis_lupus_familiaris/IG
+igdata :
+    dir : /panfs/roc/groups/0/fried255/cull0084/.local/src/ncbi-igblast-1.15.0
+    aux : /panfs/roc/groups/0/fried255/cull0084/.local/src/ncbi-igblast-1.15.0/optional_file/canisfull_gl.aux

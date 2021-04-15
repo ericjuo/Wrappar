@@ -1,0 +1,6 @@
+IGA	paired
+IGE	paired
+IGG	paired
+IGM	paired
+IGK	paired
+IGL	paired

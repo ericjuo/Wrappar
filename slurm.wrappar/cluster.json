@@ -1,0 +1,32 @@
+{
+    "migec_run" :
+    {
+        "output" : ".logs/{rule}/{wildcards.sample}/{wildcards.time}/MIG{wildcards.size}/%j.{rule}.out",
+        "error"  : ".logs/{rule}/{wildcards.sample}/{wildcards.time}/MIG{wildcards.size}/%j.{rule}.err"
+    },
+    "mitools_merge" :
+    {
+        "output" : ".logs/{rule}/{wildcards.sample}/{wildcards.time}/MIG{wildcards.size}/%j.{rule}.out",
+        "error"  : ".logs/{rule}/{wildcards.sample}/{wildcards.time}/MIG{wildcards.size}/%j.{rule}.err"
+    },
+    "mixcr_run" :
+    {
+        "output" : ".logs/{wildcards.imgt_release}/{rule}/{wildcards.sample}/{wildcards.time}/MIG{wildcards.size}/{wildcards.chain}/%j.{rule}.out",
+        "error"  : ".logs/{wildcards.imgt_release}/{rule}/{wildcards.sample}/{wildcards.time}/MIG{wildcards.size}/{wildcards.chain}/%j.{rule}.err"
+    },
+    "convert_pool_filter" :
+    {
+        "output" : ".logs/{wildcards.imgt_release}/{rule}/{wildcards.sample}/{wildcards.time}/{wildcards.chain}/%j.{rule}.out",
+        "error"  : ".logs/{wildcards.imgt_release}/{rule}/{wildcards.sample}/{wildcards.time}/{wildcards.chain}/%j.{rule}.err"
+    },
+    "vdjtools_meta_input" :
+    {
+        "output" : ".logs/{wildcards.imgt_release}/{rule}/%j.{rule}.out",
+        "error"  : ".logs/{wildcards.imgt_release}/{rule}/%j.{rule}.err"
+    },
+    "basic_stats_and_vj_usage" :
+    {
+        "output" : ".logs/{wildcards.imgt_release}/{rule}/{wildcards.chain}/%j.{rule}.out",
+        "error"  : ".logs/{wildcards.imgt_release}/{rule}/{wildcards.chain}/%j.{rule}.err"
+    },
+}
