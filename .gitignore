@@ -1,0 +1,11 @@
+# ignore raw data
+data/
+
+# ignore snakemake
+.snakemake/
+
+# ignore pipeline
+pipeline/
+
+# ignore analysis
+analysis/

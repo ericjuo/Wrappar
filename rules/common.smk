@@ -1,7 +1,7 @@
 import yaml
 import pandas as pd
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials 
+# import gspread
+# from oauth2client.service_account import ServiceAccountCredentials 
 #from snakemake.utils import validate
 #from snakemake.utils import min_version
 

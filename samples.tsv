@@ -1,0 +1,3 @@
+sample	time	fq1	fq2
+D02293	T1	data/raw_fq/SRR17271990_1.fastq	data/raw_fq/SRR17271990_2.fastq
+D02318	T1	data/raw_fq/SRR17271989_1.fastq	data/raw_fq/SRR17271989_2.fastq

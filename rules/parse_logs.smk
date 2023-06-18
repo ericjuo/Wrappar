@@ -1,8 +1,8 @@
 import os
 from collections import defaultdict
 import pandas as pd
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials 
+# import gspread
+# from oauth2client.service_account import ServiceAccountCredentials 
 
 #def case_lookup(auth_path):
 #    '''
