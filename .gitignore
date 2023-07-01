@@ -9,3 +9,7 @@ pipeline/
 
 # ignore analysis
 analysis/
+
+# ignore vdjtools log
+_vdjtools_error.log
+clones.tsv
