@@ -3,6 +3,7 @@ rule mixcr_run:
     input:
         "pipeline/{sample}/{time}/mitools/MIG{size}/{chain}_merged.t1.cf.fastq"
     output:
+        "pipeline/{sample}/{time}/mixcr/MIG{size}/{imgt_release}/{chain}/clones_contigs_{chain}.tsv",
         "pipeline/{sample}/{time}/mixcr/MIG{size}/{imgt_release}/{chain}/clones_{chain}.txt",
     params:
         base    = "pipeline/{sample}/{time}/mixcr/MIG{size}/{imgt_release}/{chain}",
@@ -18,6 +19,7 @@ rule mixcr_run:
             
             {params.mixcr} align \
                 --library {params.lib_ver} \
+                -f \
                 -s dog \
                 --verbose \
                 -p kAligner2 \
@@ -27,14 +29,30 @@ rule mixcr_run:
                 --report {params.base}/log_align_{wildcards.chain}.txt
 
             {params.mixcr} assemble \
+                -f \
                 {params.base}/align_{wildcards.chain}.vdjca \
-                {params.base}/output_{wildcards.chain}.clns \
+                {params.base}/output_{wildcards.chain}.clna \
+                --write-alignments \
                 --report {params.base}/log_assemble_{wildcards.chain}.txt
+
+
+            {params.mixcr} assembleContigs \
+                -f \
+                --report {params.base}/log_assemblecontigs_{wildcards.chain}.txt \
+                -OsubCloningRegion=VDJRegion \
+                {params.base}/output_{wildcards.chain}.clna \
+                {params.base}/output_contigs_{wildcards.chain}.clns 
+
+            {params.mixcr} exportClones \
+                --chains {wildcards.chain} \
+                --preset fullImputed \
+                {params.base}/output_contigs_{wildcards.chain}.clns \
+                {output[0]}
 
             # export without filtering non-functional for vdjtools to capture non-functional
             {params.mixcr} exportClones \
                 --chains {wildcards.chain} \
                 --minimal-clone-count 1 \
-                {params.base}/output_{wildcards.chain}.clns {output}
+                {params.base}/output_contigs_{wildcards.chain}.clns {output[1]}
         '''
 

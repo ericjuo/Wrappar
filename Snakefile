@@ -13,6 +13,10 @@ id_fixes = {
         'D02118':'D02118_'
 }
 
+SAMPLE = ['D02293', 'D02318']
+TIME = ['T1']
+SIZE = ['1']
+CHAIN = ['IGA', 'IGE', 'IGG', 'IGH', 'IGK', 'IGL', 'IGM']
 
 # dictionary of dog_id : [status, remission, breed, gender, etc.]
 #clin_data = case_lookup(config["auth"])
@@ -30,9 +34,11 @@ rule all:
         # generate the log output from processing fastqs to clones - extracts
         # data from migec and mixcr log files
         #f".logs/{config['imgt_release']}/all_dogs.all_logs.csv",
-        expand(".logs/{imgt_release}/all_dogs.all_logs.csv",
-            imgt_release=config["imgt_release"]
-        ),
+        expand("pipeline/{sample}/{time}/mixcr/MIG{size}/{imgt_release}/{chain}/clones_contigs_{chain}.tsv", 
+                sample=SAMPLE, time=TIME, size=SIZE, imgt_release=config["imgt_release"], chain=CHAIN)
+        # expand(".logs/{imgt_release}/all_dogs.all_logs.csv",
+        #     imgt_release=config["imgt_release"]
+        # ),
         # and mitools merged fastqs - umi reads
        #f".logs/{config['imgt_release']}/sample_umi_reads.csv",
         ###############################
@@ -42,8 +48,8 @@ rule all:
        #    imgt_release=config["imgt_release"]
        #)
         # BASIC STATS - DONT NEED THE ABOVE filtered_chains AS THIS RULE REQS THAT
-        expand("analysis/{imgt_release}/{chain}/CalcBasicStats/{chain}.basicstats.txt", 
-                chain=["IGH","IGK","IGL"], imgt_release=config["imgt_release"]),
+        # expand("analysis/{imgt_release}/{chain}/CalcBasicStats/{chain}.basicstats.txt", 
+        #         chain=["IGH","IGK","IGL"], imgt_release=config["imgt_release"]),
        ## SPECTRATYPING
        #expand("analysis/{imgt_release}/{chain}/CalcSpectratype/{molec}/{chain}.spectratype.{molec}.wt.txt", 
        #    chain=["IGH","IGK","IGL"], molec=["nt","aa"],
