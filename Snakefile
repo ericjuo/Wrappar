@@ -13,7 +13,7 @@ id_fixes = {
         'D02118':'D02118_'
 }
 
-SAMPLE = ['D02293', 'D02318']
+SAMPLE = pd.read_csv("samples.tsv", sep="\t")["sample"].values.tolist()
 TIME = ['T1']
 SIZE = ['1']
 CHAIN = ['IGA', 'IGE', 'IGG', 'IGH', 'IGK', 'IGL', 'IGM']
