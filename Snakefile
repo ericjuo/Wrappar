@@ -13,16 +13,16 @@ id_fixes = {
         'D02118':'D02118_'
 }
 
-SAMPLE = pd.read_csv("samples.tsv", sep="\t")["sample"].values.tolist()
-TIME = ['T1']
-SIZE = ['1']
-CHAIN = ['IGA', 'IGE', 'IGG', 'IGH', 'IGK', 'IGL', 'IGM']
 
 # dictionary of dog_id : [status, remission, breed, gender, etc.]
 #clin_data = case_lookup(config["auth"])
 
 rule all:
     input:
+        expand("pipeline/{u.sample}/{u.time}/mixcr/MIG{size}/{imgt_release}/{chain}/clones_contigs_{chain}.tsv", 
+        u=units.itertuples(), size=config["mig_size"],
+        chain=config["chains"], imgt_release=config["imgt_release"]
+        ),
        #expand(
        #    "pipeline/{u.sample}/{u.time}/mixcr/MIG{size}/{chain}/clones_{chain}.txt",
        #    u=units.itertuples(), size=config["mig_size"],
@@ -34,8 +34,7 @@ rule all:
         # generate the log output from processing fastqs to clones - extracts
         # data from migec and mixcr log files
         #f".logs/{config['imgt_release']}/all_dogs.all_logs.csv",
-        expand("pipeline/{sample}/{time}/mixcr/MIG{size}/{imgt_release}/{chain}/clones_contigs_{chain}.tsv", 
-                sample=SAMPLE, time=TIME, size=SIZE, imgt_release=config["imgt_release"], chain=CHAIN)
+
         # expand(".logs/{imgt_release}/all_dogs.all_logs.csv",
         #     imgt_release=config["imgt_release"]
         # ),
@@ -84,7 +83,7 @@ rule all:
 include: "rules/migec.smk"
 include: "rules/mitools.smk"
 include: "rules/mixcr.smk"
-include: "rules/parse_logs.smk"
-include: "rules/vdjtools.smk"
-include: "rules/changeo.smk"
+# include: "rules/parse_logs.smk"
+# include: "rules/vdjtools.smk"
+# include: "rules/changeo.smk"
 

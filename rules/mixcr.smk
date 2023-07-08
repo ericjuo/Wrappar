@@ -4,7 +4,6 @@ rule mixcr_run:
         "pipeline/{sample}/{time}/mitools/MIG{size}/{chain}_merged.t1.cf.fastq"
     output:
         "pipeline/{sample}/{time}/mixcr/MIG{size}/{imgt_release}/{chain}/clones_contigs_{chain}.tsv",
-        "pipeline/{sample}/{time}/mixcr/MIG{size}/{imgt_release}/{chain}/clones_{chain}.txt",
     params:
         base    = "pipeline/{sample}/{time}/mixcr/MIG{size}/{imgt_release}/{chain}",
         mixcr   = config["mixcr"],
@@ -49,10 +48,5 @@ rule mixcr_run:
                 {params.base}/output_contigs_{wildcards.chain}.clns \
                 {output[0]}
 
-            # export without filtering non-functional for vdjtools to capture non-functional
-            {params.mixcr} exportClones \
-                --chains {wildcards.chain} \
-                --minimal-clone-count 1 \
-                {params.base}/output_contigs_{wildcards.chain}.clns {output[1]}
         '''
 
